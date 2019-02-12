@@ -1,0 +1,17 @@
+#include "stdafx.h"
+#include <iostream>
+using namespace std;
+
+int main(void)
+{float p, des;
+
+cout<<"Ingrese el Precio original del producto:\n";
+	do{cin>>p;}
+		while(p<0);
+des=(p*0.5);
+cout<<"El descuento a realizarse sera de:  "<<des<<"\n\n";
+
+system ("pause");
+	return 0;
+}
+
