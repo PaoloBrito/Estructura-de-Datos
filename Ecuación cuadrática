@@ -1,0 +1,73 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "math.h"
+using namespace std;
+
+float discriminante(float a, float b, float c);
+float solunica (float a, float b);
+float reales(float a, float b, float dis, float &x1);
+float imaginarios(float a, float b, float dis, float &xi);
+
+int main(void)
+{float a,b,c,d,x,x1,x2,xi,xr;
+ char resp;
+ do{
+	 cout<<"Ingrese el valor de a: ";cin>>a;cout<<endl;
+	 cout<<"Ingrese el valor de b: ";cin>>b;cout<<endl;
+	 cout<<"Ingrese el valor de c: ";cin>>c;cout<<endl;
+	 d=discriminante(a,b,c);
+
+	 if(d==0)
+	 {cout<<"Existe una Solucion Unica:"<<solunica(a,b)<<endl;}
+	 else{
+		 if(d>0)
+		 {cout<<"Existen dos Soluciones Reales:"<<endl;
+		 cout<<"Solucion 1:"<<reales(a,b,d,x1)<<endl;
+		 cout<<"Solucion 2:"<<x1<<endl;
+		 }
+		 else{
+			 cout<<"Existen dos Soluciones Imaginarias:"<<endl;
+			 xr=imaginarios(a,b,d,xi);
+			 cout<<"Solucion imaginaria 1:"<<xr<<"+"<<xi<<"i \n";
+			 cout<<"Solucion imaginaria 1:"<<xr<<"+"<<xi<<"i \n";
+		 } 
+					
+			}
+	 cout<<"¿Desea continuar con una ecuacion diferente?\n";
+	 cin>>resp;
+   } while(resp == 's');
+
+system("pause");
+return 0;
+}
+
+float discriminante(float a, float b, float c)
+{
+	float d;
+	d=(b*b)-(4*a*c);
+	return d;
+}
+
+float solunica (float a, float b)
+{ 
+float x;
+   x=(b*-1)/(2*a);
+return x;
+}
+
+float reales(float a, float b, float dis, float &x1)
+{
+	float x2;
+	x1=(-b+(sqrt(dis)))/(2*a);
+	x2=(-b-(sqrt(dis)))/(2*a);
+	return x2;
+}
+
+float imaginarios(float a, float b, float dis, float &xi)
+{
+float xr;
+xr=(-b)/(2*a);
+xi=(sqrt(-dis))/(2*a);
+return xr;
+}
