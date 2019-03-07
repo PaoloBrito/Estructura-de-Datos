@@ -1,0 +1,111 @@
+** Vector .h **
+#pragma once
+class vector
+{
+private:
+	int vec[10], n;
+public:
+	vector(void);
+	~vector(void); 
+
+	void cargarVector(int vec[], int n); 
+	void mostrarVector(int vec[], int n);
+	int BinarioVector(int vec[], int n,int clave);
+};
+
+** Vector .cpp **
+#include "StdAfx.h"
+#include <iostream>
+#include "vector.h"
+
+using namespace std;
+
+vector::vector(void)
+{
+	vec[10]=0;
+	n=0;
+}
+
+
+vector::~vector(void)
+{
+}
+
+void vector::cargarVector(int vec[], int n){
+	for(int i=0;i<n;i++){
+		cout<<"vec["<<i<<"] =" ;
+		cin>>vec[i];
+	}
+}
+
+void vector::mostrarVector(int vec[], int n){
+	for(int i=0;i<n;i++){
+		cout<<vec[i]<<", ";
+	}
+	cout<<endl;
+}
+
+int vector::BinarioVector(int vec[], int n, int clave){
+	int Iarriba = n-1;
+  int Iabajo = 0;
+  int Icentro;
+  while (Iabajo <= Iarriba)
+    {
+      Icentro = (Iarriba + Iabajo)/2;
+      if (vec[Icentro] == clave)
+ return Icentro;
+      else
+ if (clave < vec[Icentro])
+   Iarriba=Icentro-1;
+ else
+   Iabajo=Icentro+1;
+    }
+  return -1;
+}
+
+** Vectores con Clase Main **
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "vector.h"  
+#define MAX 10
+
+using namespace std;
+
+void main(){
+
+	int vec[MAX], n, op;
+	vector vector1; 
+	do {
+		cout<<"Ingrese el tamanio del vector : ";
+		cin>>n;
+	} while ((n>MAX) || (n<=0));
+	do{
+		cout<<"-----       M E N U        -----"<<endl;
+		cout<<"|1.- Cargar Vector.            |"<<endl;
+		cout<<"|2.- Mostrar Vector.           |"<<endl;
+		cout<<"|3.- Buscar en el Vector.      |"<<endl;
+		cout<<"|0.- Salir                     |"<<endl;
+		cout<<"--------------------------------"<<endl;
+		cout<<" Elija una opcion"<<endl;
+		cin>>op;
+		switch(op){
+		case 1:
+			vector1.cargarVector(vec, n);  
+			break;
+		case 2:
+			vector1.mostrarVector(vec, n);
+			break;
+		case 3:
+			vector1.BinarioVector(vec, n);
+			break;
+		case 0: 
+			cout<<"Salir"<<endl;
+			break;
+		default:
+			cout<<"Error: Opcion no valida..."<<endl;
+			break;
+		}
+	}while(op!=0);
+	getch();
+}
